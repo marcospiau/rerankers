@@ -221,7 +221,7 @@ class T5Ranker(BaseRanker):
                 :, [self.token_false_id, self.token_true_id]
             ].cpu()
             if self.return_logits:
-                logits.extend(batch_scores[:, 1].tolist())
+                logits.extend(batch_scores.tolist())
             else:
                 batch_scores = torch.log_softmax(batch_scores, dim=-1)
                 batch_scores = torch.exp(batch_scores[:, 1])
